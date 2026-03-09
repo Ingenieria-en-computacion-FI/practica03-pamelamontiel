@@ -1,89 +1,49 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "fraccion.h"
-
-/* TODO
-   Definir la estructura Fraccion
-   Debe contener:
-   - numerador
-   - denominador
-*/
-struct Fraccion
-{
-    /* TODO */
-};
+#include <stdlib.h>
+#include <stdio.h>
 
 
-/* TODO
-   Crear una función auxiliar para calcular
-   el máximo común divisor (MCD)
-*/
-int mcd(int a, int b)
-{
-    /* TODO */
+Fraccion *crearFraccion(int num, int den) {
+    if (den == 0) return NULL;
+    
+    Fraccion *f = (Fraccion*)malloc(sizeof(Fraccion));
+    if (f) {
+        f->num = num; 
+        f->den = den; 
+    }
+    return f;
+}
+void simplificar(Fraccion *f) {
+    if (!f) return;
 
-    return 1;
+    int p = f->num;
+    int q = f->den;
+    int r;
+
+    while (q != 0) {
+        r = p % q;
+        p = q;
+        q = r;
+    }
+    
+    f->num /= p;
+    f->den /= p;
+}
+
+Fraccion *sumar(const Fraccion *f1, const Fraccion *f2) {
+    if (!f1 || !f2) return NULL;
+    Fraccion *res = crearFraccion(f1->num * f2->den + f2->num * f1->den,  f1->den * f2->den);
+    
+    simplificar(res); 
+    return res;
+}
+void imprimirFraccion(const Fraccion *f) {
+    if (!f) return;
+    printf("%d/%d\n", f->num, f->den); 
+}
+void destruirFraccion(Fraccion* f) {
+    if (!f) return;
+    free(f);
 }
 
 
-/* Crear fracción */
-Fraccion* crearFraccion(int num, int den)
-{
-    /* TODO
-       1 Verificar que el denominador no sea 0
-       2 Reservar memoria con malloc
-       3 Asignar numerador y denominador
-       4 Simplificar la fracción
-       5 Regresar la fracción
-    */
-
-    return NULL;
-}
-
-
-/* Simplificar fracción */
-void simplificar(Fraccion* f)
-{
-    /* TODO
-       1 Calcular el MCD
-       2 Dividir numerador y denominador entre el MCD
-    */
-}
-
-
-/* Sumar fracciones */
-Fraccion* sumar(Fraccion* a, Fraccion* b)
-{
-    /* TODO
-       1 Calcular numerador resultante
-
-          a/b + c/d =
-          (a*d + b*c) / (b*d)
-
-       2 Crear nueva fracción
-       3 Simplificar
-       4 Regresar resultado
-    */
-
-    return NULL;
-}
-
-
-/* Imprimir fracción */
-void imprimir(Fraccion* f)
-{
-    /* TODO
-       Imprimir en formato:
-
-       numerador/denominador
-    */
-}
-
-
-/* Liberar memoria */
-void destruir(Fraccion* f)
-{
-    /* TODO
-       Liberar memoria con free
-    */
-}
