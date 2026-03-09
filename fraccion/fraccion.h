@@ -1,22 +1,18 @@
-#ifndef __FRACCION_H__
-#define __FRACCION_H__
+#ifndef FRACCION_H
+#define FRACCION_H
 
-/* Tipo opaco */
-typedef struct Fraccion Fraccion;
+struct fraccion {
+    int num; 
+    int den; 
+};
 
-/* Crear una fracción */
-Fraccion* crearFraccion(int num, int den);
+typedef struct fraccion Fraccion;
 
-/* Simplificar la fracción */
-void simplificar(Fraccion* f);
-
-/* Sumar dos fracciones y regresar una nueva */
-Fraccion* sumar(Fraccion* a, Fraccion* b);
-
-/* Imprimir la fracción */
-void imprimir(Fraccion* f);
-
-/* Liberar memoria */
-void destruir(Fraccion* f);
+Fraccion *crearFraccion(int num, int den); 
+void simplificar(Fraccion *f);
+Fraccion *sumar(const Fraccion *f1, const Fraccion *f2);
+void imprimirFraccion(const Fraccion *f);
+void destruirFraccion(Fraccion *f);
 
 #endif
+
