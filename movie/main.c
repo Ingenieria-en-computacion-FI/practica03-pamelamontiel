@@ -1,42 +1,18 @@
-#include <stdio.h>
 #include "pelicula.h"
+#include <stdio.h>
 
-int main()
-{
+int main() {
+    Pelicula *p = crearPelicula("Orgullo y Prejuicio", "Drama", 127);
+    imprimir(p);
+    
+    cambiarGenero(p, "Romance");
+    agregarDirector(p, "Joe Wright");
+    imprimir(p);
 
-    printf("Prueba del TAD Pelicula\n");
+    destruir(p);
+    p = NULL;
 
-    /* TODO
-       Crear una película
-    */
-    Pelicula* p = NULL;
-
-
-    /* TODO
-       Agregar algunos directores
-    */
-
-
-    /* TODO
-       Imprimir película
-    */
-
-
-    printf("\nCambiar genero\n");
-
-    /* TODO
-       Cambiar genero
-    */
-
-
-    /* TODO
-       Imprimir nuevamente
-    */
-
-
-    /* TODO
-       Liberar memoria
-    */
+    (p == NULL) ? printf("La pelicula ahora es nula\n") : printf("No es nula\n");
 
     return 0;
 }
